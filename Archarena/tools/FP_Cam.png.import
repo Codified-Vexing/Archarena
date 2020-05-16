@@ -1,0 +1,15 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+path="res://.import/FP_Cam.png-7aac1d4be6650f6adc3a1013637bdd8f.res"
+
+[deps]
+
+source_file="res://tools/FP_Cam.png"
+dest_files=[ "res://.import/FP_Cam.png-7aac1d4be6650f6adc3a1013637bdd8f.res" ]
+
+[params]
+
+create_from=1
+threshold=0.5

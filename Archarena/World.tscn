@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://hero/Hero.tscn" type="PackedScene" id=1]
+[ext_resource path="res://terrain/Terrain.tscn" type="PackedScene" id=2]
+[ext_resource path="res://World.gd" type="Script" id=3]
+[ext_resource path="res://icon.png" type="Texture" id=4]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+seed = -559038737
+octaves = 4
+period = 45.3
+persistence = 0.4
+lacunarity = 2.8
+
+[sub_resource type="OpenSimplexNoise" id=2]
+seed = 44444
+period = 90.8
+persistence = 0.218
+lacunarity = 3.17
+
+[sub_resource type="NoiseTexture" id=3]
+seamless = true
+noise = SubResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=4]
+params_diffuse_mode = 1
+params_specular_mode = 2
+albedo_color = Color( 0.309804, 0.423529, 0.164706, 1 )
+albedo_texture = SubResource( 3 )
+metallic_specular = 0.0
+metallic_texture_channel = 4
+roughness = 0.0
+roughness_texture_channel = 4
+ao_enabled = true
+ao_light_affect = 0.68
+ao_on_uv2 = false
+ao_texture_channel = 4
+
+[node name="World" type="Spatial"]
+pause_mode = 2
+script = ExtResource( 3 )
+
+[node name="marker" type="Sprite3D" parent="."]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 4.69942, 0 )
+billboard = 2
+texture = ExtResource( 4 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -0.746592, 0.665282, 0, -0.665282, -0.746592, 0, 5.72757, 0 )
+
+[node name="Hero" parent="." instance=ExtResource( 1 )]
+pause_mode = 1
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 6.40918, 5.39437, 3.43636 )
+
+[node name="Terrain" parent="." instance=ExtResource( 2 )]
+noise = SubResource( 1 )
+texture = SubResource( 4 )

@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://tools/First Person View.gd" type="Script" id=1]
+[ext_resource path="res://hero/Hero.gd" type="Script" id=2]
+[ext_resource path="res://tools/state_machine.gd" type="Script" id=3]
+[ext_resource path="res://hero/movements/walk.gd" type="Script" id=4]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.3
+height = 1.6
+
+[node name="Hero" type="KinematicBody"]
+script = ExtResource( 2 )
+max_slope = 0.79
+
+[node name="Movement" type="Node" parent="."]
+script = ExtResource( 3 )
+starting_state = ExtResource( 4 )
+actor = NodePath("..")
+
+[node name="torso" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 1.20023, 0 )
+shape = SubResource( 1 )
+
+[node name="hips" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75914, 0 )
+
+[node name="head" type="Spatial" parent="hips"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.237955, 0 )
+
+[node name="First_Person_Camera" type="Camera" parent="hips/head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0279435, -0.188625 )
+current = true
+fov = 85.0
+script = ExtResource( 1 )
+pitch_target = NodePath("..")
+yaw_target = NodePath("../../..")
+roll_target = NodePath("../..")
+
+[node name="GUI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="on_floor_indic" type="ColorRect" parent="GUI"]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0, 0, 0, 1 )

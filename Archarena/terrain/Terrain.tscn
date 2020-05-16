@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://terrain/Terrain.gd" type="Script" id=1]
+[ext_resource path="res://terrain/landscapers/sauerscape.gd" type="Script" id=2]
+[ext_resource path="res://terrain/sauervox.gd" type="Script" id=3]
+
+[node name="Terrain" type="StaticBody"]
+script = ExtResource( 1 )
+voxeler = ExtResource( 3 )
+landscaper = ExtResource( 2 )
